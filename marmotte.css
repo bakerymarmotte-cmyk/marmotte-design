@@ -1,0 +1,237 @@
+/* ==========================================================================
+   Marmotte – Design-System v2 (hell + dunkel)
+   Ersetzt tokens.css + components.css. Die alten Dateien bleiben bestehen,
+   bis keine App sie mehr einbindet.
+
+   Einbinden (im <head>, vor dem app-eigenen CSS):
+     <link rel="stylesheet" href="https://bakerymarmotte-cmyk.github.io/marmotte-design/marmotte.css">
+     <script src="https://bakerymarmotte-cmyk.github.io/marmotte-design/theme.js"></script>
+     <script src="https://bakerymarmotte-cmyk.github.io/marmotte-design/icons.js" defer></script>
+
+   Hell/Dunkel: folgt der Systemeinstellung. Eine manuelle Wahl setzt die
+   Klasse "light" oder "dark" auf <html> (macht theme.js automatisch).
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Schriften – Roboto und Roboto Mono (SIL Open Font License, siehe fonts/)
+   -------------------------------------------------------------------------- */
+@font-face { font-family:"Marmotte Roboto"; src:url("fonts/roboto-400.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"Marmotte Roboto"; src:url("fonts/roboto-500.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"Marmotte Roboto"; src:url("fonts/roboto-700.woff2") format("woff2"); font-weight:600 800; font-style:normal; font-display:swap; }
+@font-face { font-family:"Marmotte Roboto Mono"; src:url("fonts/roboto-mono-500.woff2") format("woff2"); font-weight:400 700; font-style:normal; font-display:swap; }
+
+/* --------------------------------------------------------------------------
+   Farben – HELL (Standard)
+   -------------------------------------------------------------------------- */
+:root {
+  color-scheme: light;
+  --m-bg:#f5f4f2;
+  --m-card:#ffffff;
+  --m-card-soft:rgba(255,255,255,0.6);
+  --m-surface-2:#fafaf9;          /* Eingabefelder, erhöhte Flächen */
+  --m-border:#e7e5e4;
+  --m-text:#1c1917;
+  --m-muted:#78716c;
+  --m-faint:#a8a29e;
+  --m-accent:#064e3b;             /* Marmotte-Grün */
+  --m-accent-strong:#022c22;
+  --m-accent-fg:#ffffff;
+  --m-accent-text:#064e3b;        /* Akzent als Schriftfarbe */
+  --m-chip-bg:#d1fae5;
+  --m-chip-fg:#065f46;
+  --m-success:#047857;
+  --m-success-bg:#ecfdf5;
+  --m-danger:#e11d48;
+  --m-danger-bg:#fff1f2;
+  --m-warning:#d97706;
+  --m-warning-bg:#fffbeb;
+  --m-shadow:0 1px 2px rgba(28,25,23,0.04), 0 4px 16px rgba(28,25,23,0.04);
+
+  /* App-Farben (Kacheln, Icons) */
+  --m-t-sky-bg:#f0f9ff;     --m-t-sky-fg:#0284c7;
+  --m-t-emerald-bg:#ecfdf5; --m-t-emerald-fg:#047857;
+  --m-t-amber-bg:#fffbeb;   --m-t-amber-fg:#d97706;
+  --m-t-rose-bg:#fff1f2;    --m-t-rose-fg:#e11d48;
+  --m-t-indigo-bg:#eef2ff;  --m-t-indigo-fg:#4f46e5;
+  --m-t-fuchsia-bg:#fdf4ff; --m-t-fuchsia-fg:#c026d3;
+  --m-t-violet-bg:#f5f3ff;  --m-t-violet-fg:#7c3aed;
+  --m-t-teal-bg:#f0fdfa;    --m-t-teal-fg:#0d9488;
+  --m-t-slate-bg:#f1f5f9;   --m-t-slate-fg:#475569;
+  --m-t-orange-bg:#fff7ed;  --m-t-orange-fg:#ea580c;
+
+  /* Typografie & Formen */
+  --m-font:"Marmotte Roboto", Roboto, system-ui, sans-serif;
+  --m-font-mono:"Marmotte Roboto Mono", "Roboto Mono", ui-monospace, monospace;
+  --m-radius-sm:8px;
+  --m-radius-md:12px;
+  --m-radius-lg:16px;
+  --m-radius-full:999px;
+}
+
+/* --------------------------------------------------------------------------
+   Farben – DUNKEL (Systemeinstellung oder manuell gewählt)
+   -------------------------------------------------------------------------- */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    color-scheme: dark;
+    --m-bg:#1c1917; --m-card:#292524; --m-card-soft:rgba(41,37,36,0.55);
+    --m-surface-2:#1c1917; --m-border:#44403c;
+    --m-text:#f5f5f4; --m-muted:#a8a29e; --m-faint:#78716c;
+    --m-accent:#047857; --m-accent-strong:#065f46; --m-accent-fg:#ffffff; --m-accent-text:#34d399;
+    --m-chip-bg:rgba(6,95,70,0.35); --m-chip-fg:#6ee7b7;
+    --m-success:#34d399; --m-success-bg:rgba(4,120,87,0.16);
+    --m-danger:#fb7185;  --m-danger-bg:rgba(225,29,72,0.16);
+    --m-warning:#fbbf24; --m-warning-bg:rgba(217,119,6,0.16);
+    --m-shadow:none;
+    --m-t-sky-bg:rgba(2,132,199,0.16);    --m-t-sky-fg:#38bdf8;
+    --m-t-emerald-bg:rgba(4,120,87,0.16); --m-t-emerald-fg:#34d399;
+    --m-t-amber-bg:rgba(217,119,6,0.16);  --m-t-amber-fg:#fbbf24;
+    --m-t-rose-bg:rgba(225,29,72,0.16);   --m-t-rose-fg:#fb7185;
+    --m-t-indigo-bg:rgba(79,70,229,0.18); --m-t-indigo-fg:#818cf8;
+    --m-t-fuchsia-bg:rgba(192,38,211,0.16); --m-t-fuchsia-fg:#e879f9;
+    --m-t-violet-bg:rgba(124,58,237,0.16); --m-t-violet-fg:#a78bfa;
+    --m-t-teal-bg:rgba(13,148,136,0.16);  --m-t-teal-fg:#2dd4bf;
+    --m-t-slate-bg:rgba(100,116,139,0.2); --m-t-slate-fg:#94a3b8;
+    --m-t-orange-bg:rgba(234,88,12,0.16); --m-t-orange-fg:#fb923c;
+  }
+}
+:root.dark {
+  color-scheme: dark;
+  --m-bg:#1c1917; --m-card:#292524; --m-card-soft:rgba(41,37,36,0.55);
+  --m-surface-2:#1c1917; --m-border:#44403c;
+  --m-text:#f5f5f4; --m-muted:#a8a29e; --m-faint:#78716c;
+  --m-accent:#047857; --m-accent-strong:#065f46; --m-accent-fg:#ffffff; --m-accent-text:#34d399;
+  --m-chip-bg:rgba(6,95,70,0.35); --m-chip-fg:#6ee7b7;
+  --m-success:#34d399; --m-success-bg:rgba(4,120,87,0.16);
+  --m-danger:#fb7185;  --m-danger-bg:rgba(225,29,72,0.16);
+  --m-warning:#fbbf24; --m-warning-bg:rgba(217,119,6,0.16);
+  --m-shadow:none;
+  --m-t-sky-bg:rgba(2,132,199,0.16);    --m-t-sky-fg:#38bdf8;
+  --m-t-emerald-bg:rgba(4,120,87,0.16); --m-t-emerald-fg:#34d399;
+  --m-t-amber-bg:rgba(217,119,6,0.16);  --m-t-amber-fg:#fbbf24;
+  --m-t-rose-bg:rgba(225,29,72,0.16);   --m-t-rose-fg:#fb7185;
+  --m-t-indigo-bg:rgba(79,70,229,0.18); --m-t-indigo-fg:#818cf8;
+  --m-t-fuchsia-bg:rgba(192,38,211,0.16); --m-t-fuchsia-fg:#e879f9;
+  --m-t-violet-bg:rgba(124,58,237,0.16); --m-t-violet-fg:#a78bfa;
+  --m-t-teal-bg:rgba(13,148,136,0.16);  --m-t-teal-fg:#2dd4bf;
+  --m-t-slate-bg:rgba(100,116,139,0.2); --m-t-slate-fg:#94a3b8;
+  --m-t-orange-bg:rgba(234,88,12,0.16); --m-t-orange-fg:#fb923c;
+}
+
+/* --------------------------------------------------------------------------
+   Übergang: alte Variablennamen aus tokens.css zeigen auf das neue Design.
+   So übernimmt bestehender Code das neue Aussehen ohne Anpassung.
+   Wird entfernt, sobald keine App die alten Namen mehr verwendet.
+   -------------------------------------------------------------------------- */
+:root {
+  --color-bg: var(--m-bg);
+  --color-surface: var(--m-card);
+  --color-surface-raised: var(--m-surface-2);
+  --color-border: var(--m-border);
+  --color-yellow: var(--m-accent);          /* früher Gold, jetzt Grün */
+  --color-yellow-deep: var(--m-accent-strong);
+  --color-text: var(--m-text);
+  --color-text-muted: var(--m-muted);
+  --color-success: var(--m-success);
+  --color-danger: var(--m-danger);
+  --font-display: var(--m-font);
+  --font-body: var(--m-font);
+  --font-mono: var(--m-font-mono);
+  --radius-sm: var(--m-radius-sm);
+  --radius-md: var(--m-radius-md);
+  --radius-lg: var(--m-radius-lg);
+  --shadow-card: var(--m-shadow);
+}
+
+/* --------------------------------------------------------------------------
+   Grundlage
+   -------------------------------------------------------------------------- */
+html, body {
+  background: var(--m-bg);
+  color: var(--m-text);
+  font-family: var(--m-font);
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+svg.m-icon { display:inline-block; flex-shrink:0; vertical-align:middle; }
+
+/* --------------------------------------------------------------------------
+   Kopfzeile (ersetzt .topbar aus components.css, gleiche HTML-Struktur)
+
+   <div class="topbar">
+     <div class="brand">
+       <div class="brand-logo"><i data-icon="croissant"></i></div>   (optional)
+       <div>
+         <div class="brand-name">Marmotte</div>
+         <div class="brand-sub">Zeiterfassung</div>
+       </div>
+     </div>
+     <div class="who">
+       <button class="m-theme-btn" data-theme-toggle aria-label="Hell/Dunkel"></button>
+       <span class="name" id="user-name-label"></span>
+       <button class="logout-btn" id="logout-btn">Abmelden</button>
+     </div>
+   </div>
+   -------------------------------------------------------------------------- */
+.topbar {
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  padding:20px 16px 12px;
+  max-width:640px; margin:0 auto;
+}
+.topbar .brand { display:flex; align-items:center; gap:10px; min-width:0; }
+.topbar .brand-logo {
+  width:40px; height:40px; border-radius:var(--m-radius-md);
+  background:var(--m-accent); color:#fef3c7;
+  display:flex; align-items:center; justify-content:center; flex-shrink:0;
+}
+.topbar .brand-logo svg { width:20px; height:20px; }
+.topbar .brand-name {
+  font-weight:700; font-size:17px; line-height:1.2;
+  color:var(--m-accent); letter-spacing:-0.01em;   /* auch im Dunkelmodus dunkelgrün */
+}
+.topbar .brand-sub { font-size:12px; color:var(--m-muted); margin-top:1px; }
+.topbar .who { display:flex; align-items:center; gap:8px; }
+.topbar .who .name { font-size:13.5px; font-weight:500; color:var(--m-text); }
+.topbar .logout-btn {
+  background:transparent; border:1px solid var(--m-border); color:var(--m-muted);
+  border-radius:var(--m-radius-full); padding:7px 12px; font:inherit; font-size:12.5px; cursor:pointer;
+  display:inline-flex; align-items:center; gap:6px;
+}
+.topbar .logout-btn:hover { border-color:var(--m-danger); color:var(--m-danger); }
+
+/* Hell/Dunkel-Schalter: <button class="m-theme-btn" data-theme-toggle></button> */
+.m-theme-btn {
+  width:36px; height:36px; border-radius:var(--m-radius-full);
+  background:var(--m-card); border:1px solid var(--m-border); color:var(--m-muted);
+  display:inline-flex; align-items:center; justify-content:center; cursor:pointer; padding:0;
+}
+.m-theme-btn svg { width:17px; height:17px; }
+
+/* --------------------------------------------------------------------------
+   Kleine Helfer
+   -------------------------------------------------------------------------- */
+.m-card { background:var(--m-card); border:1px solid var(--m-border); border-radius:var(--m-radius-lg); box-shadow:var(--m-shadow); }
+.m-card-soft { background:var(--m-card-soft); border:1px solid var(--m-border); border-radius:var(--m-radius-md); }
+.m-muted { color:var(--m-muted); }
+.m-faint { color:var(--m-faint); }
+.m-chip { background:var(--m-chip-bg); color:var(--m-chip-fg); }
+.m-section-title {
+  display:flex; align-items:center; gap:8px;
+  font-size:12px; font-weight:500; color:var(--m-faint);
+  text-transform:uppercase; letter-spacing:0.05em;
+}
+.m-section-title::after { content:""; flex:1; height:1px; background:var(--m-border); }
+
+/* Getönte Icon-Fläche: <div class="m-tint m-tint-sky"><i data-icon="clock"></i></div> */
+.m-tint { width:44px; height:44px; border-radius:var(--m-radius-md); display:flex; align-items:center; justify-content:center; }
+.m-tint svg { width:22px; height:22px; }
+.m-tint-sky     { background:var(--m-t-sky-bg);     color:var(--m-t-sky-fg); }
+.m-tint-emerald { background:var(--m-t-emerald-bg); color:var(--m-t-emerald-fg); }
+.m-tint-amber   { background:var(--m-t-amber-bg);   color:var(--m-t-amber-fg); }
+.m-tint-rose    { background:var(--m-t-rose-bg);    color:var(--m-t-rose-fg); }
+.m-tint-indigo  { background:var(--m-t-indigo-bg);  color:var(--m-t-indigo-fg); }
+.m-tint-fuchsia { background:var(--m-t-fuchsia-bg); color:var(--m-t-fuchsia-fg); }
+.m-tint-violet  { background:var(--m-t-violet-bg);  color:var(--m-t-violet-fg); }
+.m-tint-teal    { background:var(--m-t-teal-bg);    color:var(--m-t-teal-fg); }
+.m-tint-slate   { background:var(--m-t-slate-bg);   color:var(--m-t-slate-fg); }
+.m-tint-orange  { background:var(--m-t-orange-bg);  color:var(--m-t-orange-fg); }

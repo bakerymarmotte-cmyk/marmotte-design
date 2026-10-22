@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f5f4f2">
+<title>Marmotte Design – Vorschau</title>
+<link rel="stylesheet" href="marmotte.css">
+<script src="theme.js"></script>
+<script src="icons.js" defer></script>
+<style>
+  body { margin:0; }
+  .wrap { max-width:640px; margin:0 auto; padding:0 16px 40px; }
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .tile { padding:16px; }
+  .tile b { display:block; font-weight:500; font-size:14px; margin-top:12px; }
+  .tile span { font-size:12px; color:var(--m-muted); }
+  .alt { margin-top:24px; padding:16px; border-radius:var(--radius-lg); background:var(--color-surface); border:1px solid var(--color-border); }
+  .alt .t { color:var(--color-yellow); font-weight:700; }
+  .alt .m { color:var(--color-text-muted); font-family:var(--font-mono); font-size:22px; }
+  .chips { display:flex; gap:8px; margin-top:16px; flex-wrap:wrap; }
+  .chips span { padding:4px 10px; border-radius:999px; font-size:12px; }
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand">
+    <div class="brand-logo"><i data-icon="croissant"></i></div>
+    <div><div class="brand-name">Marmotte</div><div class="brand-sub">Zeiterfassung</div></div>
+  </div>
+  <div class="who">
+    <button class="m-theme-btn" data-theme-toggle></button>
+    <span class="name">Nik</span>
+    <button class="logout-btn"><i data-icon="log-out" data-size="15"></i> Abmelden</button>
+  </div>
+</div>
+<div class="wrap">
+  <div class="m-section-title" style="margin:8px 0 12px">Neue Bausteine</div>
+  <div class="grid">
+    <div class="m-card tile"><div class="m-tint m-tint-sky"><i data-icon="clock"></i></div><b>Stempel</b><span>Ein- und ausstempeln</span></div>
+    <div class="m-card tile"><div class="m-tint m-tint-emerald"><i data-icon="calendar"></i></div><b>Monat</b><span>Übersicht</span></div>
+    <div class="m-card tile"><div class="m-tint m-tint-amber"><i data-icon="mail"></i></div><b>Anträge</b><span>Ferien &amp; Absenzen</span></div>
+    <div class="m-card tile"><div class="m-tint m-tint-violet"><i data-icon="calendar-days"></i></div><b>Arbeitsplan</b><span>Wochenplan</span></div>
+  </div>
+  <div class="alt">
+    <div class="t">Alte Variablen (--color-yellow) → jetzt Grün</div>
+    <div class="m">08:42:17</div>
+    <div class="chips">
+      <span class="m-chip">Chip</span>
+      <span style="background:var(--m-success-bg);color:var(--m-success)">Genehmigt</span>
+      <span style="background:var(--m-danger-bg);color:var(--m-danger)">Abgelehnt</span>
+      <span style="background:var(--m-warning-bg);color:var(--m-warning)">Offen</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

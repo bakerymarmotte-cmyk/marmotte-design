@@ -1,7 +1,6 @@
 /* ==========================================================================
    Marmotte – Design-System v2 (hell + dunkel)
-   Ersetzt tokens.css + components.css. Die alten Dateien bleiben bestehen,
-   bis keine App sie mehr einbindet.
+   Nachfolger von tokens.css + components.css.
 
    Einbinden (im <head>, vor dem app-eigenen CSS):
      <link rel="stylesheet" href="https://bakerymarmotte-cmyk.github.io/marmotte-design/marmotte.css">
@@ -116,31 +115,6 @@
   --m-t-teal-bg:rgba(13,148,136,0.16);  --m-t-teal-fg:#2dd4bf;
   --m-t-slate-bg:rgba(100,116,139,0.2); --m-t-slate-fg:#94a3b8;
   --m-t-orange-bg:rgba(234,88,12,0.16); --m-t-orange-fg:#fb923c;
-}
-
-/* --------------------------------------------------------------------------
-   Übergang: alte Variablennamen aus tokens.css zeigen auf das neue Design.
-   So übernimmt bestehender Code das neue Aussehen ohne Anpassung.
-   Wird entfernt, sobald keine App die alten Namen mehr verwendet.
-   -------------------------------------------------------------------------- */
-:root {
-  --color-bg: var(--m-bg);
-  --color-surface: var(--m-card);
-  --color-surface-raised: var(--m-surface-2);
-  --color-border: var(--m-border);
-  --color-yellow: var(--m-accent);          /* früher Gold, jetzt Grün */
-  --color-yellow-deep: var(--m-accent-strong);
-  --color-text: var(--m-text);
-  --color-text-muted: var(--m-muted);
-  --color-success: var(--m-success);
-  --color-danger: var(--m-danger);
-  --font-display: var(--m-font);
-  --font-body: var(--m-font);
-  --font-mono: var(--m-font-mono);
-  --radius-sm: var(--m-radius-sm);
-  --radius-md: var(--m-radius-md);
-  --radius-lg: var(--m-radius-lg);
-  --shadow-card: var(--m-shadow);
 }
 
 /* --------------------------------------------------------------------------

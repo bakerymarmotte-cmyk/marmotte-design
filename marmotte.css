@@ -181,6 +181,15 @@ svg.m-icon { display:inline-block; flex-shrink:0; vertical-align:middle; }
 }
 .m-theme-btn svg { width:17px; height:17px; }
 
+/* Logo + App-Name führen zurück zum Dashboard (setzt theme.js automatisch) */
+.topbar .brand[data-dashboard] {
+  cursor:pointer; border-radius:var(--m-radius-md);
+  -webkit-tap-highlight-color:transparent; transition:opacity .15s ease;
+}
+.topbar .brand[data-dashboard]:hover .brand-logo { box-shadow:0 0 0 3px var(--m-chip-bg); }
+.topbar .brand[data-dashboard]:active { opacity:.6; }
+.topbar .brand[data-dashboard]:focus-visible { outline:2px solid var(--m-accent); outline-offset:4px; }
+
 /* --------------------------------------------------------------------------
    Kleine Helfer
    -------------------------------------------------------------------------- */

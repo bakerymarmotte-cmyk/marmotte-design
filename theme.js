@@ -59,6 +59,46 @@
   window.addEventListener("storage", function (e) { if (e.key === KEY) apply(); });
   document.addEventListener("DOMContentLoaded", apply);
 
-  window.MarmotteTheme = { isDark: isDark, set: set, toggle: toggle, refresh: apply };
+  /* ------------------------------------------------------------------------
+     Zurück zum Dashboard: Logo und App-Name in der Kopfzeile (.topbar .brand)
+     antippen. Gilt automatisch für alle Apps mit dieser Kopfzeile.
+     - Ausschalten für eine einzelne Kopfzeile: <div class="brand" data-kein-dashboard>
+     - Eine App kann das Verlassen verhindern (z.B. ungespeicherte Eingaben):
+         window.addEventListener("marmotte:verlassen", function (e) {
+           if (!confirm("…")) e.preventDefault();
+         });
+     ------------------------------------------------------------------------ */
+  var DASHBOARD = "https://bakerymarmotte-cmyk.github.io/marmotte-dashboard/";
+
+  function dashboardLinks() {
+    if (location.href.indexOf(DASHBOARD) === 0) return;   // im Dashboard selbst nicht
+    document.querySelectorAll(".topbar .brand").forEach(function (b) {
+      if (b.hasAttribute("data-kein-dashboard") || b.hasAttribute("data-dashboard")) return;
+      b.setAttribute("data-dashboard", "");
+      b.setAttribute("role", "link");
+      b.setAttribute("tabindex", "0");
+      b.setAttribute("title", "Zum Dashboard");
+      b.setAttribute("aria-label", "Zum Dashboard");
+    });
+  }
+  function zumDashboard() {
+    var ev;
+    try { ev = new CustomEvent("marmotte:verlassen", { cancelable: true }); }
+    catch (e) { ev = document.createEvent("CustomEvent"); ev.initCustomEvent("marmotte:verlassen", false, true, null); }
+    if (!window.dispatchEvent(ev)) return;               // App hat abgebrochen
+    location.href = DASHBOARD;
+  }
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest && e.target.closest("[data-dashboard]");
+    if (b) { e.preventDefault(); zumDashboard(); }
+  });
+  document.addEventListener("keydown", function (e) {
+    if ((e.key === "Enter" || e.key === " ") && e.target.hasAttribute && e.target.hasAttribute("data-dashboard")) {
+      e.preventDefault(); zumDashboard();
+    }
+  });
+  document.addEventListener("DOMContentLoaded", dashboardLinks);
+
+  window.MarmotteTheme = { isDark: isDark, set: set, toggle: toggle, refresh: apply, zumDashboard: zumDashboard };
   apply();
 })();
